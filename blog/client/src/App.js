@@ -1,11 +1,13 @@
 import React from 'react';
 import PostCreate from './PostCreate';
 
-export default () => {
+const App = () => {
     return (
-        <div>
-            <h1>Blog app</h1>
+        <div className="container">
+            <h1>Create Post</h1>
             <PostCreate />
         </div>
     )
 };
+
+export default App;
