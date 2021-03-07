@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "del-cli ./build/*",
-    "build": "npm run clean"
+    "build": "npm run clean && tsc"
   },
   "keywords": [],
   "author": "",
