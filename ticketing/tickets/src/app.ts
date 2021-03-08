@@ -6,6 +6,7 @@ import { NotFoundError, errorHandler, currentUser } from '@sdtickets/common';
 import { createTicketRouter } from './routes/createTicket';
 import { getTicketRouter } from './routes/getTicket';
 import { getTicketsRouter } from './routes/getTickets';
+import { updateTicketRouter } from './routes/updateTicket';
 
 const app = express();
 app.set('trust proxy', true);
@@ -20,6 +21,7 @@ app.use(
 app.use(currentUser);
 
 app.use(createTicketRouter);
+app.use(updateTicketRouter);
 app.use(getTicketRouter);
 app.use(getTicketsRouter);
 

@@ -11,7 +11,7 @@ const createTicket = () => {
         });
 };
 
-describe('tests GET to /api/tickets', async () => {
+describe('GET /api/tickets', () => {
     it('can fetch a list of tickets', async () => {
         await createTicket();
         await createTicket();

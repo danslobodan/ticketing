@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
 
-describe('tickets routing tests', () => {
+describe('POST /api/tickets', () => {
     it('has a route handler listening to /api/tickets for post request', async () => {
         const response = await request(app).post('/api/tickets').send({});
 
