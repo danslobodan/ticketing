@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: tickets
+  name: tickets-srv
 spec:
   selector:
     app: tickets
