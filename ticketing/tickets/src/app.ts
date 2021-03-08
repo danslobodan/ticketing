@@ -4,6 +4,7 @@ import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler, currentUser } from '@sdtickets/common';
 
 import { createTicketRouter } from './routes/createTicket';
+import { getTicketRouter } from './routes/getTicket';
 
 const app = express();
 app.set('trust proxy', true);
@@ -18,6 +19,7 @@ app.use(
 app.use(currentUser);
 
 app.use(createTicketRouter);
+app.use(getTicketRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();
