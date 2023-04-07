@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: danslobodan/ticketing-client
+          image: danslobodan/client
 ---
 apiVersion: v1
 kind: Service

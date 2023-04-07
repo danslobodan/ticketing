@@ -16,7 +16,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: danslobodan/ticketing-client
+    - image: danslobodan/client
       context: client
       docker:
         dockerfile: Dockerfile
