@@ -13,6 +13,7 @@ export const errorHandler = (
             .send({ errors: err.serializeErrors() });
     }
 
-    console.log(err);
-    res.status(500).send({ errors: [{ message: 'Unknown server error.' }] });
+    res.status(400).send({
+        errors: [{ message: 'Something went wrong.' }],
+    });
 };

@@ -1,28 +1,19 @@
-import request from 'supertest';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import request from 'supertest';
 import { app } from '../app';
 
 declare global {
-    namespace NodeJS {
-        interface Global {
-            signup(): Promise<string[]>;
-        }
-    }
+    var signin: () => Promise<string[]>;
 }
-
-let mongo: any;
-
 beforeAll(async () => {
-    process.env.JWT_KEY = 'asdf';
+    process.env.JWT_KEY = 'asdfasdf';
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-    mongo = new MongoMemoryServer();
-    const mongoUri = await mongo.getUri();
+    const mongo = await MongoMemoryServer.create();
+    const mongoUri = mongo.getUri();
 
-    await mongoose.connect(mongoUri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoUri, {});
 });
 
 beforeEach(async () => {
@@ -34,11 +25,10 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-    await mongo.stop();
-    await mongoose.disconnect();
+    await mongoose.connection.close();
 });
 
-global.signup = async () => {
+global.signin = async () => {
     const email = 'test@test.com';
     const password = 'password';
 
@@ -50,5 +40,7 @@ global.signup = async () => {
         })
         .expect(201);
 
-    return response.get('Set-Cookie');
+    const cookie = response.get('Set-Cookie');
+
+    return cookie;
 };
