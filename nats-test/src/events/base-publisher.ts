@@ -20,7 +20,6 @@ export abstract class Publisher<T extends Event> {
                 if (err) {
                     return reject(err);
                 }
-
                 resolve();
             });
         });

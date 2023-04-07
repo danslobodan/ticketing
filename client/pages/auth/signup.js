@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Router from 'next/router';
-import { useRequest } from '../../hooks/use-request';
+import useRequest from '../../hooks/use-request';
 
-const singup = () => {
+const signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { doRequest, errors } = useRequest({
@@ -18,7 +18,7 @@ const singup = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        doRequest();
+        await doRequest();
     };
 
     return (
@@ -47,4 +47,4 @@ const singup = () => {
     );
 };
 
-export default singup;
+export default signup;

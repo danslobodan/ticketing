@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Router from 'next/router';
-import { useRequest } from '../../hooks/use-request';
+import useRequest from '../../hooks/use-request';
 
 const signin = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ const signin = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        doRequest();
+        await doRequest();
     };
 
     return (

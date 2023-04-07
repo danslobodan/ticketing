@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: tickets-depl
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: tickets
@@ -39,7 +40,7 @@ spec:
   selector:
     app: tickets
   ports:
-    - port: 3000
-      targetPort: 3000
-      name: tickets
+    - name: tickets
       protocol: TCP
+      port: 3000
+      targetPort: 3000
