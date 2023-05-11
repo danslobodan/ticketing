@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { Order } from '../../models/order';
 import { OrderStatus } from '@sdtickets/common';
 import { stripe } from '../../stripe';
+import { Payment } from '../../models/payment';
 
 jest.mock('../../stripe');
 
@@ -49,6 +50,7 @@ it('returns a 400 when purchasing a cancelled order', async () => {
     });
 
     await order.save();
+    gf;
 
     await request(app)
         .post('/api/payments')
@@ -86,4 +88,11 @@ it('returns a 201 with valid inputs', async () => {
     expect(chargeOptions.source).toEqual('tok_visa');
     expect(chargeOptions.amount).toEqual(price * 100);
     expect(chargeOptions.currency).toEqual('usd');
+
+    const payment = await Payment.findOne({
+        orderId: order.id,
+        stripeId: 'fake_stripe_id',
+    });
+
+    expect(payment).not.toBeNull();
 });
