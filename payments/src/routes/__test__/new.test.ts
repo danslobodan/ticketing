@@ -50,7 +50,6 @@ it('returns a 400 when purchasing a cancelled order', async () => {
     });
 
     await order.save();
-    gf;
 
     await request(app)
         .post('/api/payments')
